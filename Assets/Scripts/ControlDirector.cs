@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 
 public class ControlDirector : MonoBehaviour
 {
+    public GameObject personaje;
     public PlayableDirector director;
     public GameObject Musica;
     bool start=false;
@@ -29,6 +30,8 @@ public class ControlDirector : MonoBehaviour
     {
         if (director == aDirector){
             Musica.GetComponent<AudioSource>().Play();
+           personaje.GetComponent<MovimientoPersonaje>().enabled=true;
+
         }
             
     }
