@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour {
 
@@ -65,6 +66,7 @@ public class Enemy : MonoBehaviour {
         // Si es el enemigo y está en rango de ataque nos paramos y le atacamos
         if (target != initialPosition && distance < attackRadius){
             // Aquí le atacaríamos, pero por ahora simplemente cambiamos la animación
+            SceneManager.LoadScene(5);
             anim.SetFloat("Movx", dir.x);
             anim.SetFloat("Movy", dir.y);
             anim.Play("Mago_Movement", -1, 0);  // Congela la animación de andar

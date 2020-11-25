@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnvEmail : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class EnvEmail : MonoBehaviour
     public InputField Squeja;
     public Text lblMsg;
     public string Stringqueja;
+    public void volverMain (){
+        SceneManager.LoadScene(2);
+    }
     public void SendMail(){
         try{
             Stringqueja=Squeja.text;

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ContactSuport.unity
     guid: ae8ddf836836b7646a856400b52a4bc7
+  - enabled: 1
+    path: Assets/Scenes/FightScene.unity
+    guid: cf8a28d86c486ac4cbc632c984d3b602
   m_configObjects: {}
