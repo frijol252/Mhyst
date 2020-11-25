@@ -32,6 +32,9 @@ public class DataBaseConection : MonoBehaviour
         {
             Debug.Log("Conexion No Establecida"+ex);
         }
+        finally{
+            conn.Close();
+        }
     }
 
     public void register()
