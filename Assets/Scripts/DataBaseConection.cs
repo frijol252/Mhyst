@@ -45,7 +45,7 @@ public class DataBaseConection : MonoBehaviour
             MySqlCommand cmd=new MySqlCommand(Consulta,conn);
             conn.Open();
             cmd.ExecuteReader();
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
         catch(MySqlException ex)
         {
@@ -81,5 +81,8 @@ public class DataBaseConection : MonoBehaviour
         finally{
 
         }
+    }
+    public void GoToRegister(){
+        SceneManager.LoadScene(1);
     }
 }
