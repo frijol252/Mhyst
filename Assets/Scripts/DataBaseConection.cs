@@ -18,6 +18,7 @@ public class DataBaseConection : MonoBehaviour
     {
         LLamarBase();
     }
+    
     void LLamarBase()
     {
         MySqlConnection conn = new MySqlConnection();
@@ -82,7 +83,7 @@ public class DataBaseConection : MonoBehaviour
             Debug.Log("Error"+ex);
         }
         finally{
-
+            conn.Close();
         }
     }
     public void GoToRegister(){
