@@ -24,10 +24,16 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        try
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Sharer.Player.sprite;
+        }
+        catch (Exception ex)
+        {   }
         hp.fillAmount = hpCurrent / hpMax;
         if (hpCurrent <= 0)
         {
-            Debug.Log("asd");
+            hpCurrent = 100;
         }
     }
 
@@ -43,22 +49,25 @@ public class PlayerBehavior : MonoBehaviour
     void Attk(Tuple<int, float> tuple)
     {
         GameObject bullet = null;
-        switch (tuple.Item1)
+        if (tuple.Item2 != 0)
         {
-            case 0:
-                bullet = Instantiate(smallBullet, transform.position, Quaternion.identity);
-                bullet.GetComponent<PlayerBullet>().dmg = 10f * tuple.Item2;
-                break;
-            case 1:
-                bullet = Instantiate(bigBullet, transform.position, Quaternion.identity);
-                bullet.GetComponent<PlayerBullet>().dmg = 50f * tuple.Item2;
-                break;
-            case 2:
-                bullet = Instantiate(smallBullet, transform.position, Quaternion.identity);
-                bullet.GetComponent<PlayerBullet>().dmg = 20f * tuple.Item2;
-                break;
+            switch (tuple.Item1)
+            {
+                case 0:
+                    bullet = Instantiate(smallBullet, transform.position, Quaternion.identity);
+                    bullet.GetComponent<PlayerBullet>().dmg = 10f * tuple.Item2;
+                    break;
+                case 1:
+                    bullet = Instantiate(bigBullet, transform.position, Quaternion.identity);
+                    bullet.GetComponent<PlayerBullet>().dmg = 50f * tuple.Item2;
+                    break;
+                case 2:
+                    bullet = Instantiate(smallBullet, transform.position, Quaternion.identity);
+                    bullet.GetComponent<PlayerBullet>().dmg = 20f * tuple.Item2;
+                    break;
+            }
+            bullet.GetComponent<PlayerBullet>().target = GameObject.FindWithTag("Enemy");
+            bullet.tag = "PlayerBullet";
         }
-        bullet.GetComponent<PlayerBullet>().target = GameObject.FindWithTag("Enemy");
-        bullet.tag = "PlayerBullet";
     }
 }

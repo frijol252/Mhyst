@@ -1,7 +1,9 @@
 ﻿using Assets.Source.Script.Configuration;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
@@ -22,10 +24,16 @@ public class EnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        try
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = Sharer.Enemy.sprite;
+        }
+        catch (Exception ex)
+        { }
         hp.fillAmount = hpCurrent / hpMax;
         if (hpCurrent <= 0)
         {
-            Debug.Log("asd");
+            SceneManager.LoadScene(2);
         }
     }
 

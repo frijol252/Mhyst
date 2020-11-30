@@ -41,6 +41,7 @@ public class Controller : MonoBehaviour
         {
             EnemyAttk(UnityEngine.Random.Range(50f, 100f) / 100f);
             playerTurn = true;
+            CadGen();
         }
     }
 
@@ -57,8 +58,14 @@ public class Controller : MonoBehaviour
             bool x = true;
             for (int i = 0; i < (text.text.Length - 1); i++)
             {
-                char aux = text.text[i];
-                if (!Char.Equals(text.text[i], res[i]))
+                try
+                {
+                    if (!Char.Equals(text.text[i], res[i]))
+                    {
+                        x = false;
+                    }
+                }
+                catch (Exception)
                 {
                     x = false;
                 }
@@ -98,7 +105,6 @@ public class Controller : MonoBehaviour
     public void Sfm()
     {
         select = 0;
-        words = FightParameters.Lista[0].Split(' ');
         CadGen();
         a1.Play();
     }
@@ -106,16 +112,20 @@ public class Controller : MonoBehaviour
     public void Bfb()
     {
         select = 1;
-        words = FightParameters.Lista[1].Split(' ');
         CadGen();
         a2.Play();
     }
 
     void CadGen()
     {
+        words = FightParameters.Lista[select].Split(' ');
         string cad = "";
-        int index = UnityEngine.Random.Range(0, words.Length);
-        res = words[index];
+        int index;
+        do
+        {
+            index = UnityEngine.Random.Range(0, words.Length);
+            res = words[index];
+        } while (res.Length <= 4);
         words[index] = "...";
         words.ToList<string>().ForEach(x => cad += (x + " "));
         textShow.text = cad.Trim();
